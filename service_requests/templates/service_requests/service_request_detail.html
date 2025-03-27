@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Service Request Details</h2>
+
+        <p><strong>Type:</strong> {{ service_request.get_service_type_display }}</p>
+        <p><strong>Status:</strong> 
+            <span class="badge bg-primary">{{ service_request.get_status_display }}</span>
+        </p>
+        <p><strong>Description:</strong> {{ service_request.description }}</p>
+
+        {% if service_request.attachments %}
+            <p><strong>Attachment:</strong> 
+                <a href="{{ service_request.attachments.url }}" class="btn btn-sm btn-outline-secondary">
+                    📎 Download
+                </a>
+            </p>
+        {% endif %}
+
+        <p><strong>Submitted on:</strong> 
+            <span class="text-muted">{{ service_request.created_at|date:"F d, Y h:i A" }}</span>
+        </p>
+
+        {% if service_request.resolved_at %}
+            <p><strong>Resolved on:</strong> 
+                <span class="text-success">{{ service_request.resolved_at|date:"F d, Y h:i A" }}</span>
+            </p>
+        {% endif %}
+
+        <a href="{% url 'list_service_requests' %}" class="btn btn-primary mt-3">🔙 Back to all requests</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .btn-outline-secondary {
+        text-decoration: none;
+    }
+</style>
+
+{% endblock %}

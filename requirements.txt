@@ -1,0 +1,8 @@
+Django==4.2.5
+djangorestframework==3.14.0
+django-storages==1.13.2
+django-allauth==0.53.0
+python-dotenv==1.0.0
+pytest==7.4.0
+pytest-django==4.5.2
+django-cors-headers==4.0.0

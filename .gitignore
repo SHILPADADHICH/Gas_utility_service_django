@@ -1,0 +1,3 @@
+venv/*
+
+service_requests/__pycache__/

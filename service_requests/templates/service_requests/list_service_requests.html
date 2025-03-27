@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Your Service Requests</h2>
+        {% if service_requests %}
+            <ul class="list-group">
+                {% for request in service_requests %}
+                    <li class="list-group-item">
+                        <a href="{% url 'service_request_detail' request.pk %}" class="text-decoration-none">
+                            <strong>{{ request.service_type }}</strong> - 
+                            <span class="badge bg-primary">{{ request.status }}</span>
+                        </a>
+                        <br>
+                        <small class="text-muted">Submitted on {{ request.created_at|date:"F d, Y h:i A" }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-center text-muted">No service requests found.</p>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+    }
+    .card {
+        border-radius: 10px;
+    }
+</style>
+
+{% endblock %}
